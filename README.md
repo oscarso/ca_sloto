@@ -51,7 +51,19 @@ diff 2025-0901_dresult1.csv 2025-0901_dresult2.csv
 md5sum 2025-0901_dresult1.csv
 md5sum 2025-0901_dresult2.csv
 
+How to export(dump) all stored procedures ?
+mysqldump -u root -p --no-create-info --no-data --no-create-db   --routines --triggers --events ca_sloto > ca_sloto_all_proc.sql
 
+How to export(dump) all table schemas ?
+mysqldump -u root -p --no-data ca_sloto > ca_sloto_all_tables.sql
+
+How to import sp and table schema into a new database ?
+bash-3.2$ mysql -u root -p
+mysql> CREATE DATABASE test1;
+Query OK, 1 row affected (0.00 sec)
+mysql> exit
+bash-3.2$ mysql -u root -p test1 < ca_sloto_db_table_create.sql
+bash-3.2$ mysql -u root -p test1 < ca_sloto_db_storedproc_create.sql 
 
 
 Reference:

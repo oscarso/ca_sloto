@@ -1,9 +1,17 @@
 DELIMITER $$
 
+USE ca_sloto;
 
+
+# SHOW ALL procedures & tables
+SHOW TABLES;
+SHOW PROCEDURE STATUS WHERE db='ca_sloto';
+
+# DROP ALL procedures & tables
+#DROP DATABASE   ca_sloto;
+#CREATE DATABASE ca_sloto;
 
 # dresult
-
 
 # order4 or orderN
 
@@ -36,6 +44,9 @@ BEGIN
 END$$
 
 
+# SHOW ALL procedures & tables
+SHOW TABLES;
+SHOW PROCEDURE STATUS WHERE db='ca_sloto';
 
 DELIMITER ;
 
