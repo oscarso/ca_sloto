@@ -1,7 +1,7 @@
 How to install and configure MySQL on MacOS 15 ?
 01) https://www.mysql.com/
 02) Download MySQL 8.4.6 for MacOS 15 (Arm64)
-03) Set MySQL root password: Ts1x6!
+03) Set MySQL root password:
 04) Configure path:
 bash-3.2$ echo 'export PATH=/usr/local/mysql/bin:$PATH' >> ~/.zshrc
 bash-3.2$ source ~/.zshrc
