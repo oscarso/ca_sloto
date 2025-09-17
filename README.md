@@ -65,6 +65,11 @@ mysql> exit
 bash-3.2$ mysql -u root -p test1 < ca_sloto_db_table_create.sql
 bash-3.2$ mysql -u root -p test1 < ca_sloto_db_storedproc_create.sql 
 
+One script to drop, create table and proc ?
+mysql -u root -p < sql/ca_sloto_sql_create.sql
+
+
+
 
 Reference:
 
