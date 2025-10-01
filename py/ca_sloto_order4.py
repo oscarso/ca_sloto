@@ -26,30 +26,35 @@ def generate_combinations(cursor, list1, list2, list3, list4):
     return ctr
 
 
-# Example usage
-#list1 = [1, 2, 3, 4, 5]
-#list2 = [6, 7, 8, 9, 10]
-#list3 = [11, 12, 13, 14, 15]
-#list4 = [16, 17, 18, 19, 20]
+def main():
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="Ts111111!",
+        database="ca_sloto"
+    )
+    cursor = conn.cursor()
 
-# --- DB connection ---
-conn = mysql.connector.connect(
-    host="localhost",     
-    user="root",          
-    password="Ts111111!", 
-    database="ca_sloto"   
-)
+    dn = 1379
+    dn_max = 3988
 
-cursor = conn.cursor()
+    total_perms = 0
+    for d in range(dn, dn_max + 1):
+        try:
+            list1, list2, list3, list4 = get_first_four(cursor, d)
+            c = generate_combinations(cursor, list1, list2, list3, list4)
+            print(f"✅ d={d}, total permutations: {c}")
+            total_perms += c
+        except Exception as e:
+            print(f"⚠️ Error at d={d}: {e}")
 
-list1, list2, list3, list4 = get_first_four(cursor, 3988) 
-c = generate_combinations(cursor, list1, list2, list3, list4)
-print(f"\nTotal permutation: {c}")
+    conn.commit()
+    print(f"\n🎯 Overall permutations inserted: {total_perms}")
+
+    cursor.close()
+    conn.close()
 
 
+if __name__ == "__main__":
+    main()
 
-conn.commit()
-
-# --- Close connection ---
-cursor.close()
-conn.close()

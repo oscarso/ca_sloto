@@ -1,3 +1,5 @@
+Version 0.2
+
 How to install and configure MySQL on MacOS 15 ?
 01) https://www.mysql.com/
 02) Download MySQL 8.4.6 for MacOS 15 (Arm64)
@@ -5,6 +7,26 @@ How to install and configure MySQL on MacOS 15 ?
 04) Configure path:
 bash-3.2$ echo 'export PATH=/usr/local/mysql/bin:$PATH' >> ~/.zshrc
 bash-3.2$ source ~/.zshrc
+
+05) Create database: mysql -u root -p < ca_sloto_sql_create.sql
+06) Create database tables & stored procedures: mysql -u root -p < ca_sloto_sql_init.sql
+07) Verify database: mysql -u root -p < ca_sloto_sql_show.sql
+
+08) Import data into database: python3 py/ca_sloto_import.py data/2025-0830_dresult.csv 
+
+
+
+
+
+
+
+
+
+
+
+
+Old README:
+
 05) bash-3.2$ mysql -u root -p
 06) mysql> CREATE DATABASE ca_sloto;
       Query OK, 1 row affected (0.01 sec)
