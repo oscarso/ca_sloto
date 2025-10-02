@@ -21,7 +21,7 @@ def generate_combinations(cursor, list1, list2, list3, list4):
                 for d in list4:
                    p = f"{a}-{b}-{c}-{d}"
                    ctr += 1 
-                   print(f"ctr={ctr}, p={p}")
+                   #print(f"ctr={ctr}, p={p}")
                    cursor.callproc("upsert_order4", [p])
     return ctr
 
@@ -36,7 +36,7 @@ def main():
     cursor = conn.cursor()
 
     dn = 1379
-    dn_max = 3988
+    dn_max = 1383 
 
     total_perms = 0
     for d in range(dn, dn_max + 1):
