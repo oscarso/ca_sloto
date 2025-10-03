@@ -1,7 +1,7 @@
 import mysql.connector
 
 def get_first_four(cursor, start_dnum):
-    cursor.callproc('get_dnum_four_rows', [start_dnum])
+    cursor.callproc('get_rows_4', [start_dnum])
 
     # --- Fetch results ---
     row_lists = []  # will store 4 lists
@@ -22,7 +22,7 @@ def generate_combinations(cursor, list1, list2, list3, list4):
                    p = f"{a}-{b}-{c}-{d}"
                    ctr += 1 
                    #print(f"ctr={ctr}, p={p}")
-                   cursor.callproc("upsert_order4", [p])
+                   cursor.callproc("order4_upsert", [p])
     return ctr
 
 
@@ -31,7 +31,7 @@ def main():
         host="localhost",
         user="root",
         password="Ts111111!",
-        database="ca_sloto"
+        database="test1"
     )
     cursor = conn.cursor()
 
