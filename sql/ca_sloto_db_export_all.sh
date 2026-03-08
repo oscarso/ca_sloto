@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# Purpose:
+#   Export MySQL database schema objects into two SQL files:
+#   - <db>_table_create.sql (table CREATE statements)
+#   - <db>_storedproc_create.sql (routines/triggers/events)
+#
+# Usage:
+#   bash sql/ca_sloto_db_export_all.sh
+#
+# Notes:
+#   - Prompts for a database name and MySQL root password.
+#   - Output files are written to the current working directory.
+#   - Filenames must match what sql/ca_sloto_db_import_all.sh expects.
+
 # Prompt for database name
 read -p "Enter database name to export: " DB_NAME
 

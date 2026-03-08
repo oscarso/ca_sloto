@@ -8,11 +8,34 @@ How to install and configure MySQL on MacOS 15 ?
 bash-3.2$ echo 'export PATH=/usr/local/mysql/bin:$PATH' >> ~/.zshrc
 bash-3.2$ source ~/.zshrc
 
-05) Create database: mysql -u root -p < ca_sloto_sql_create.sql
-06) Create database tables & stored procedures: mysql -u root -p < ca_sloto_sql_init.sql
-07) Verify database: mysql -u root -p < ca_sloto_sql_show.sql
+05) Install Python dependency:
+python3 -m pip install mysql-connector-python
 
-08) Import data into database: python3 py/ca_sloto_import.py data/2025-0830_dresult.csv 
+06) Create database (this repo currently uses database name: test1):
+mysql -u root -p < sql/ca_sloto_sql_create.sql
+
+07) Create database tables & stored procedures:
+mysql -u root -p < sql/ca_sloto_sql_init.sql
+
+08) Verify database objects:
+mysql -u root -p < sql/ca_sloto_sql_show.sql
+
+09) Import data into database:
+python3 py/ca_sloto_import.py data/2026-0308_dresult.csv
+For testing/verification only:
+python3 py/ca_sloto_import.py data/dresult_test.csv
+
+Notes:
+- The MySQL connection settings are currently hardcoded in the Python scripts (see `py/ca_sloto_import.py`, `py/ca_sloto_export.py`, `py/ca_sloto_order4.py`). Update `host`, `user`, `password`, and `database` there if your environment differs.
+- The importer expects 1 row per line with 7 fields separated by semicolons:
+  `dnum;d1;d2;d3;d4;d5;mn;`
+  A trailing `;` at end-of-line is allowed.
+- `data/dresult_test.csv` is for testing/verification only.
+- Draw numbers (`dnum`) are stored as `VARCHAR` and are zero-padded on import for correct ordering.
+- `sql/ca_sloto_sql_init.sql` defines:
+  - table `dresult`
+  - table `order4`
+  - stored procedures `order4_upsert`, `get_rows_4`, `get_row_1`
 
 
 

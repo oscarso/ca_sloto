@@ -1,3 +1,14 @@
+-- Purpose:
+--   Initialize schema objects for the database used by this repo.
+--   Creates tables and stored procedures.
+--
+-- Usage:
+--   mysql -u root -p < sql/ca_sloto_sql_init.sql
+--
+-- Notes:
+--   This script assumes the database name is `test1`.
+--   Run sql/ca_sloto_sql_create.sql first.
+
 USE test1;
 
 
@@ -48,18 +59,23 @@ END$$
 # get_rows_4 or get_rows_N
 CREATE PROCEDURE get_rows_4(IN start_dnum VARCHAR(32))
 BEGIN
+    DECLARE start_dnum_padded VARCHAR(32);
+    SET start_dnum_padded = LPAD(start_dnum, 4, '0');
+
     SELECT d1,d2,d3,d4,d5
     FROM dresult
-    WHERE dnum >= start_dnum
+    WHERE dnum >= start_dnum_padded
     ORDER BY dnum
     LIMIT 4;
 END$$
 
 # get_row_1
-CREATE PROCEDURE get_row_1(IN dnum VARCHAR(32))
+CREATE PROCEDURE get_row_1(IN in_dnum VARCHAR(32))
 BEGIN
     SELECT d1,d2,d3,d4,d5
     FROM dresult
-    WHERE dnum = dnum;
+    WHERE dnum = LPAD(in_dnum, 4, '0');
 END$$
+
+DELIMITER ;
 

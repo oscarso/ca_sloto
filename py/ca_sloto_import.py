@@ -1,5 +1,27 @@
+"""Purpose:
+  Import a semicolon-delimited text/CSV file into the MySQL table `dresult`.
+
+Usage:
+  python3 py/ca_sloto_import.py <input_file>
+
+Input format:
+  - One row per line
+  - 7 fields separated by semicolons
+  - Optional trailing semicolon is allowed
+  - Expected fields:
+    dnum;d1;d2;d3;d4;d5;mn;
+
+Notes:
+  - MySQL connection settings are currently hardcoded below.
+  - Target database/table must exist (see sql/ca_sloto_sql_create.sql and
+    sql/ca_sloto_sql_init.sql).
+"""
+
 import mysql.connector
 import argparse
+
+
+DNUM_PAD_WIDTH = 4
 
 # --- Setup argument parser ---
 parser = argparse.ArgumentParser(description="Import CSV into MySQL table dresult.")
@@ -41,6 +63,9 @@ with open(args.filename, "r") as f:
             continue
 
         dnum, d1, d2, d3, d4, d5, mn = parts
+
+        if dnum.isdigit() and len(dnum) < DNUM_PAD_WIDTH:
+            dnum = dnum.zfill(DNUM_PAD_WIDTH)
         values = (dnum, d1, d2, d3, d4, d5, mn)
 
         cursor.execute(insert_sql, values)

@@ -1,3 +1,19 @@
+"""Purpose:
+  Export rows from the MySQL table `dresult` to a semicolon-delimited file.
+
+Usage:
+  python3 py/ca_sloto_export.py <output_file>
+
+Output format:
+  - Semicolon-delimited
+  - No header row
+  - Columns:
+    dnum;d1;d2;d3;d4;d5;mn
+
+Notes:
+  - MySQL connection settings are currently hardcoded below.
+"""
+
 import mysql.connector
 import csv
 import argparse

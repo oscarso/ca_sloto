@@ -1,3 +1,14 @@
+"""Purpose:
+  Drop a MySQL table if it exists.
+
+Usage:
+  python3 py/ca_sloto_table_drop.py <table>
+
+Notes:
+  - This is destructive (drops a table). Use carefully.
+  - MySQL connection settings are currently hardcoded below.
+"""
+
 import mysql.connector
 import argparse
 

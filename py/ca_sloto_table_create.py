@@ -1,3 +1,15 @@
+"""Purpose:
+  Create the MySQL table `dresult` if it does not exist.
+
+Usage:
+  python3 py/ca_sloto_table_create.py
+
+Notes:
+  - This is a standalone helper script.
+  - MySQL connection settings are currently hardcoded below.
+  - This script creates only `dresult`; it does not create stored procedures.
+"""
+
 import mysql.connector
 
 # --- DB connection ---

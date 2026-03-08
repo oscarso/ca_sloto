@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# Purpose:
+#   Import MySQL schema objects exported by sql/ca_sloto_db_export_all.sh into a new database.
+#   Uses two files in the current working directory:
+#   - <old_db>_table_create.sql
+#   - <old_db>_storedproc_create.sql
+#
+# Usage:
+#   bash sql/ca_sloto_db_import_all.sh
+#
+# Notes:
+#   - Prompts for an "OLD" database name only to locate the exported filenames.
+#   - Prompts for a "NEW" database name to create/import into.
+#   - Creates the NEW database if it does not exist.
+#   - Imports table definitions first, then stored procedures/triggers/events.
+
 # Ask for database name (must match exported filenames)
 read -p "Enter OLD database name to exported from: " DB_NAME_OLD
 read -p "Enter NEW database name to import into: " DB_NAME_NEW
